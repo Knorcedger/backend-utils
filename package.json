@@ -1,0 +1,33 @@
+{
+  "name": "@knorcedger/backend-utils",
+  "version": "1.0.0",
+  "description": "A collection of useful utils to use in your backend code",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint . --ignore-pattern 'example/*' --ext .js",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Knorcedger/backend-utils.git"
+  },
+  "author": "Achilleas Tsoumitas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Knorcedger/backend-utils/issues"
+  },
+  "homepage": "https://github.com/Knorcedger/backend-utils#readme",
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "prettier": "^2.4.1"
+  },
+  "dependencies": {
+    "signale": "^1.4.0"
+  }
+}
