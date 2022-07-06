@@ -1,6 +1,6 @@
 {
   "name": "@knorcedger/backend-utils",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A collection of useful utils to use in your backend code",
   "main": "index.js",
   "scripts": {
