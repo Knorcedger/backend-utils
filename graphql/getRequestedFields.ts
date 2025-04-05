@@ -14,7 +14,7 @@
  *   // ['id', 'name', 'address', 'city', 'zipcode']
  * }
  */
-const getRequestedFields = (info): string[] => {
+export const getRequestedFields = (info): string[] => {
   if (!info || !info.fieldNodes) {
     return [];
   }
@@ -43,5 +43,3 @@ const getRequestedFields = (info): string[] => {
 
   return fields;
 };
-
-export default getRequestedFields;

@@ -28,7 +28,7 @@ interface ConnectMongooseOptions {
  * // With disabled logging
  * await connectMongoose(mongoose, 'mongodb://localhost:27017/mydatabase', { logging: false });
  */
-const connectMongoose = (
+export const connectMongoose = (
   mongooseInstance: typeof mongoose,
   url: string,
   options: ConnectMongooseOptions = { logging: true }
@@ -79,5 +79,3 @@ const connectMongoose = (
 
     return mongooseInstance.connect(url);
   });
-
-export default connectMongoose;

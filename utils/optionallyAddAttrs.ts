@@ -26,5 +26,3 @@ export const optionallyAddAttrs = <T extends Record<string, any>>(
     }),
     {}
   );
-
-export default optionallyAddAttrs;

@@ -55,7 +55,7 @@ const restore = (result, possiblePopulatedFields) => ({
  *   ['author', 'comments']
  * );
  */
-const populate = async (query, info, possiblePopulatedFields) => {
+export const populate = async (query, info, possiblePopulatedFields) => {
   const fieldsToPopulate: string[] = [];
 
   // check if we should populate the user attribute
@@ -99,5 +99,3 @@ const populate = async (query, info, possiblePopulatedFields) => {
 
   return results;
 };
-
-export default populate;
