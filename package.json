@@ -1,8 +1,12 @@
 {
   "name": "@knorcedger/backend-utils",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "A collection of useful utils to use in your backend code",
   "main": "index.ts",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
   "scripts": {
     "lint": "eslint . --ignore-pattern 'example/*' --ext .js",
     "test": "npm run lint"
@@ -17,7 +21,6 @@
     "url": "https://github.com/Knorcedger/backend-utils/issues"
   },
   "homepage": "https://github.com/Knorcedger/backend-utils#readme",
-  "type": "module",
   "devDependencies": {
     "@types/node": "^22.13.10",
     "@types/signale": "^1.4.7",

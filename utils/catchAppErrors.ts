@@ -1,3 +1,6 @@
+import process from 'process';
+import signale from 'signale';
+
 /**
  * Sets up global error handlers to prevent application crashes from uncaught errors.
  *
@@ -20,9 +23,6 @@
  *
  * @returns {void}
  */
-import process from 'process';
-import signale from 'signale';
-
 const catchAppErrors = () => {
   // catch any uncaught exceptions, so that the server never crashes
   process.on('uncaughtException', (err) => {

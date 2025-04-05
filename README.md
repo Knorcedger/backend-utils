@@ -2,6 +2,10 @@
 
 A comprehensive collection of utilities designed to simplify backend GraphQL and MongoDB development.
 
+## IMPORTANT
+
+This package assumes that you use node 22.6 or newer that supports type stripping
+
 ## Contents
 
 - [Installation](#installation)
