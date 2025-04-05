@@ -9,11 +9,13 @@ A comprehensive collection of utilities designed to simplify backend GraphQL and
   - [MongoDB to GraphQL Type Conversion](#1-mongodb-to-graphql-type-conversion)
   - [GraphQL Type Creation](#2-graphql-type-creation)
   - [Custom GraphQL Scalars](#3-custom-graphql-scalars)
+  - [getRequestedFields](#4-getrequestedfields)
+  - [populate](#3-populate)
 - [Utility Functions](#utility-functions)
   - [catchAppErrors](#1-catchapperrors)
-  - [getRequestedFields](#2-getrequestedfields)
-  - [populate](#3-populate)
-  - [optionallyAddAttrs](#4-optionallyaddattrs)
+  - [optionallyAddAttrs](#2-optionallyaddattrs)
+- [Mongoose Utilities](#mongoose-utilities)
+  - [Database Connection](#1-database-connection)
 - [License](#license)
 - [Contributing](#contributing)
 
@@ -184,22 +186,7 @@ const schema = new GraphQLSchema({
 });
 ```
 
-## Utility Functions
-
-### 1. catchAppErrors
-
-#### `catchAppErrors()`
-
-Prevents application crashes by catching uncaught exceptions and unhandled promise rejections.
-
-```typescript
-import { catchAppErrors } from '@knorcedger/backend-utils';
-
-// Add this at the end of your main application file
-catchAppErrors();
-```
-
-### 2. getRequestedFields
+### 4. getRequestedFields
 
 Extracts requested field names from a GraphQL resolver info object.
 
@@ -217,9 +204,17 @@ const resolvers = {
 };
 ```
 
-### 3. populate
+### 5. populate
 
-Intelligently populates MongoDB references based on GraphQL query fields.
+Intelligently populates MongoDB references based on GraphQL query fields
+
+This function:
+
+1.  Analyzes the GraphQL query to determine which fields were requested
+2.  Only populates references for fields that were actually requested
+3.  Maintains both the ID reference and the populated object
+4.  Works with both single objects and arrays of results
+5.  Handles special cases like newly created documents
 
 ```typescript
 import { populate } from '@knorcedger/backend-utils';
@@ -234,7 +229,22 @@ const resolvers = {
 };
 ```
 
-### 4. optionallyAddAttrs
+## Utility Functions
+
+### 1. catchAppErrors
+
+#### `catchAppErrors()`
+
+Prevents application crashes by catching uncaught exceptions and unhandled promise rejections.
+
+```typescript
+import { catchAppErrors } from '@knorcedger/backend-utils';
+
+// Add this at the end of your main application file
+catchAppErrors();
+```
+
+### 2. optionallyAddAttrs
 
 Selectively copies properties from a source object based on a list of attribute names.
 
@@ -494,6 +504,27 @@ const resolvers = {
     },
   },
 };
+```
+
+## Mongoose Utilities
+
+### 1. Database Connection
+
+#### `connectMongoose()`
+
+Connects to a MongoDB database using Mongoose with proper error handling.
+
+```typescript
+import mongoose from 'mongoose';
+import { connectMongoose } from '@knorcedger/backend-utils';
+
+// With default logging
+await connectMongoose(mongoose, 'mongodb://localhost:27017/mydatabase');
+
+// With disabled logging
+await connectMongoose(mongoose, 'mongodb://localhost:27017/mydatabase', {
+  logging: false,
+});
 ```
 
 ## License
