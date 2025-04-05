@@ -4,7 +4,7 @@ import signale from 'signale';
 /**
  * Options for the MongoDB connection
  */
-interface ConnectMongooseOptions {
+interface MongooseConnectOptions {
   /**
    * Whether to log connection events
    * @default true
@@ -23,15 +23,15 @@ interface ConnectMongooseOptions {
  *
  * @example
  * // With default logging
- * await connectMongoose(mongoose, 'mongodb://localhost:27017/mydatabase');
+ * await mongooseConnect(mongoose, 'mongodb://localhost:27017/mydatabase');
  *
  * // With disabled logging
- * await connectMongoose(mongoose, 'mongodb://localhost:27017/mydatabase', { logging: false });
+ * await mongooseConnect(mongoose, 'mongodb://localhost:27017/mydatabase', { logging: false });
  */
-export const connectMongoose = (
+export const mongooseConnect = (
   mongooseInstance: typeof mongoose,
   url: string,
-  options: ConnectMongooseOptions = { logging: true }
+  options: MongooseConnectOptions = { logging: true }
 ): Promise<string> =>
   new Promise((resolve, reject) => {
     const log = (message: string) => {

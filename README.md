@@ -514,19 +514,19 @@ const resolvers = {
 
 ### 1. Database Connection
 
-#### `connectMongoose()`
+#### `mongooseConnect()`
 
 Connects to a MongoDB database using Mongoose with proper error handling.
 
 ```typescript
 import mongoose from 'mongoose';
-import { connectMongoose } from '@knorcedger/backend-utils';
+import { mongooseConnect } from '@knorcedger/backend-utils';
 
 // With default logging
-await connectMongoose(mongoose, 'mongodb://localhost:27017/mydatabase');
+await mongooseConnect(mongoose, 'mongodb://localhost:27017/mydatabase');
 
 // With disabled logging
-await connectMongoose(mongoose, 'mongodb://localhost:27017/mydatabase', {
+await mongooseConnect(mongoose, 'mongodb://localhost:27017/mydatabase', {
   logging: false,
 });
 ```
