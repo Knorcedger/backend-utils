@@ -1,3 +1,4 @@
+// because of a typescript quirk we have to import with .js
 export * from './graphql/createTypes.js';
 export * from './graphql/getRequestedFields.js';
 export * from './graphql/mongoModelToGraphQLType.js';
