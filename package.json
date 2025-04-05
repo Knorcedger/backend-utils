@@ -1,6 +1,6 @@
 {
   "name": "@knorcedger/backend-utils",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "A collection of useful utils to use in your backend code",
   "main": "index.js",
   "scripts": {
@@ -19,15 +19,22 @@
   "homepage": "https://github.com/Knorcedger/backend-utils#readme",
   "type": "module",
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
-    "prettier": "^2.4.1"
+    "@types/node": "^22.13.10",
+    "@types/signale": "^1.4.7",
+    "eslint": "^9.22.0",
+    "eslint-plugin-perfectionist": "^4.10.1",
+    "graphql": "^16.10.0",
+    "mongoose": "^8.13.2",
+    "prettier": "^3.5.3",
+    "typescript-eslint": "^8.26.1"
   },
   "dependencies": {
-    "signale": "^1.4.0"
+    "@graphql-codegen/cli": "^5.0.5",
+    "signale": "^1.4.0",
+    "yargs": "^17.7.2"
+  },
+  "peerDependencies": {
+    "graphql": ">=15.0.0",
+    "mongoose": ">=7.0.0"
   }
 }
