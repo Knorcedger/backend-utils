@@ -1,6 +1,6 @@
 {
   "name": "@knorcedger/backend-utils",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A collection of useful utils to use in your backend code",
   "main": "index.js",
   "scripts": {
@@ -28,8 +28,6 @@
     "prettier": "^2.4.1"
   },
   "dependencies": {
-    "form-data": "^4.0.0",
-    "mailgun.js": "^7.0.3",
     "signale": "^1.4.0"
   }
 }
