@@ -1,10 +1,10 @@
-export * from './graphql/createTypes';
-export * from './graphql/getRequestedFields';
-export * from './graphql/mongoModelToGraphQLType';
-export * from './graphql/populate';
-export * from './graphql/scalars';
+export * from './graphql/createTypes.js';
+export * from './graphql/getRequestedFields.js';
+export * from './graphql/mongoModelToGraphQLType.js';
+export * from './graphql/populate.js';
+export * from './graphql/scalars.js';
 
-export * from './mongoose/mongooseConnect';
+export * from './mongoose/mongooseConnect.js';
 
-export * from './utils/catchAppErrors';
-export * from './utils/optionallyAddAttrs';
+export * from './utils/catchAppErrors.js';
+export * from './utils/optionallyAddAttrs.js';
