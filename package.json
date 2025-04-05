@@ -1,8 +1,8 @@
 {
   "name": "@knorcedger/backend-utils",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "A collection of useful utils to use in your backend code",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "lint": "eslint . --ignore-pattern 'example/*' --ext .js",
     "test": "npm run lint"
