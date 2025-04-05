@@ -20,6 +20,7 @@ This package assumes that you use node 22.6 or newer that supports type strippin
   - [optionallyAddAttrs](#2-optionallyaddattrs)
 - [Mongoose Utilities](#mongoose-utilities)
   - [Database Connection](#1-database-connection)
+- [TypeScript tsconfig.json](#typescript)
 - [License](#license)
 - [Contributing](#contributing)
 
@@ -529,6 +530,18 @@ await mongooseConnect(mongoose, 'mongodb://localhost:27017/mydatabase');
 await mongooseConnect(mongoose, 'mongodb://localhost:27017/mydatabase', {
   logging: false,
 });
+```
+
+## Typescript
+
+Inside the typescript folder there's a tsconfig.json that can be used to run typescript checks in the parent project.
+
+Inside your package.json
+
+```
+"scripts": {
+  "typecheck": "cp node_modules/@knorcedger/backend-utils/tsconfig.json . && npx tsc --noEmit && rm -f tsconfig.json"
+}
 ```
 
 ## License

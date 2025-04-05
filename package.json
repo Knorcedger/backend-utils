@@ -1,6 +1,6 @@
 {
   "name": "@knorcedger/backend-utils",
-  "version": "2.1.7",
+  "version": "2.2.0",
   "description": "A collection of useful utils to use in your backend code",
   "main": "dist/index.js",
   "type": "module",
@@ -12,7 +12,7 @@
   ],
   "scripts": {
     "build:clean": "rimraf dist",
-    "build": "tsc",
+    "build": "tsc && cp -r typescript/* dist/",
     "lint": "eslint . --ignore-pattern 'example/*' --ext .js",
     "test": "npm run lint",
     "prepare": "husky"
