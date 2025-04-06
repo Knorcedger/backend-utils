@@ -1,14 +1,18 @@
+import type {
+  GraphQLInputFieldConfigMap,
+  GraphQLInputType,
+  GraphQLOutputType,
+} from 'graphql';
+
 import {
+  GraphQLBoolean,
   GraphQLEnumType,
   GraphQLFloat,
   GraphQLID,
-  GraphQLInputFieldConfigMap,
   GraphQLInputObjectType,
-  GraphQLInputType,
   GraphQLList,
   GraphQLNonNull,
   GraphQLObjectType,
-  GraphQLOutputType,
   GraphQLScalarType,
   GraphQLString,
 } from 'graphql';
@@ -88,6 +92,7 @@ export function transformModelToGraphQLTypes(model: mongoose.Model<any>) {
   function mapMongooseTypeToGraphQLType(type: any) {
     if (type === Number) return GraphQLFloat;
     if (type === String) return GraphQLString;
+    if (type === Boolean) return GraphQLBoolean;
     if (type === Date) return GraphQLString; // Or use a custom Date scalar
     if (type === mongoose.Schema.Types.ObjectId) return GraphQLID;
     return GraphQLString;
