@@ -16,6 +16,7 @@ import {
   GraphQLScalarType,
   GraphQLString,
 } from 'graphql';
+import { GraphQLDate } from 'graphql-scalars';
 import mongoose from 'mongoose';
 
 type EnumTypeDefs = Record<string, string[]>;
@@ -93,7 +94,7 @@ export function transformModelToGraphQLTypes(model: mongoose.Model<any>) {
     if (type === Number) return GraphQLFloat;
     if (type === String) return GraphQLString;
     if (type === Boolean) return GraphQLBoolean;
-    if (type === Date) return GraphQLString; // Or use a custom Date scalar
+    if (type === Date) return GraphQLDate;
     if (type === mongoose.Schema.Types.ObjectId) return GraphQLID;
     return GraphQLString;
   }
