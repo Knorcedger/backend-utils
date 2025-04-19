@@ -11,10 +11,12 @@ This package assumes that you use node 22.6 or newer that supports type strippin
 - [Installation](#installation)
 - [GraphQL Utilities](#graphql-utilities)
   - [MongoDB to GraphQL Type Conversion](#1-mongodb-to-graphql-type-conversion)
-  - [GraphQL Type Creation](#2-graphql-type-creation)
-  - [Custom GraphQL Scalars](#3-custom-graphql-scalars)
-  - [getRequestedFields](#4-getrequestedfields)
-  - [populate](#5-populate)
+  - [Make a field of input fields required](#2-make-a-field-of-input-fields-required)
+  - [Add a new field to an output type](#3-add-a-new-field-to-an-output-type)
+  - [GraphQL Type Creation](#4-graphql-type-creation)
+  - [Custom GraphQL Scalars](#5-custom-graphql-scalars)
+  - [getRequestedFields](#6-getrequestedfields)
+  - [populate](#7-populate)
 - [Utility Functions](#utility-functions)
   - [catchAppErrors](#1-catchapperrors)
   - [optionallyAddAttrs](#2-optionallyaddattrs)
@@ -78,7 +80,31 @@ export const {
 } = createInputTypeFromOutputType(GuestAppPreferencesType);
 ```
 
-### 2. GraphQL Type Creation
+### 2. Make a field of input fields required
+
+```typescript
+// Make email required in the input field
+makeInputFieldRequired(ClientInputFields, 'email');
+```
+
+### 3. Add a new field to an output type
+
+```typescript
+addFieldToType({
+  field: {
+    description: 'The client _id',
+    name: '_id', // Field name
+    // resolve: (source, args, context, info) => {
+    //   return `Test value for client ID: ${source?._id ?? "unknown"}`;
+    // },
+    type: GraphQLObjectID, // Field type
+    // args: {} // Define arguments here if needed
+  },
+  type: ClientType, // The GraphQLObjectType to modify
+});
+```
+
+### 4. GraphQL Type Creation
 
 #### `createTypes()`
 
