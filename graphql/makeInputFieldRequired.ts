@@ -22,7 +22,7 @@ export const makeInputFieldRequired = (
   // Check if the type is already NonNull
   if (!(field.type instanceof GraphQLNonNull)) {
     field.type = new GraphQLNonNull(field.type);
-    console.log(`Made input field "${fieldName}" required.`);
+    // console.log(`Made input field "${fieldName}" required.`);
   } else {
     console.log(`Input field "${fieldName}" is already required.`);
   }

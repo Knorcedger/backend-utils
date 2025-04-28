@@ -13,10 +13,11 @@ This package assumes that you use node 22.6 or newer that supports type strippin
   - [MongoDB to GraphQL Type Conversion](#1-mongodb-to-graphql-type-conversion)
   - [Make a field of input fields required](#2-make-a-field-of-input-fields-required)
   - [Add a new field to an output type](#3-add-a-new-field-to-an-output-type)
-  - [GraphQL Type Creation](#4-graphql-type-creation)
-  - [Custom GraphQL Scalars](#5-custom-graphql-scalars)
-  - [getRequestedFields](#6-getrequestedfields)
-  - [populate](#7-populate)
+  - [Remove a field from an output type](#4-remove-a-field-from-an-output-type)
+  - [GraphQL Type Creation](#5-graphql-type-creation)
+  - [Custom GraphQL Scalars](#6-custom-graphql-scalars)
+  - [getRequestedFields](#7-getrequestedfields)
+  - [populate](#8-populate)
 - [Utility Functions](#utility-functions)
   - [catchAppErrors](#1-catchapperrors)
   - [optionallyAddAttrs](#2-optionallyaddattrs)
@@ -104,7 +105,16 @@ addFieldToType({
 });
 ```
 
-### 4. GraphQL Type Creation
+### 4. Remove a field from an output type
+
+```typescript
+removeFieldFromType({
+  fieldName: 'password', // the field to remove
+  type: ClientType, // The GraphQLObjectType to modify
+});
+```
+
+### 5. GraphQL Type Creation
 
 #### `createTypes()`
 
@@ -197,7 +207,7 @@ The function returns an object with six properties:
 - `[Name]UpdateType`: The input GraphQL object type for updating objects
 - `[Name]UpdateFields`: The fields object for the update type
 
-### 3. Custom GraphQL Scalars
+### 6. Custom GraphQL Scalars
 
 #### `IntRangeType(min, max)`
 
@@ -217,7 +227,7 @@ const schema = new GraphQLSchema({
 });
 ```
 
-### 4. getRequestedFields
+### 7. getRequestedFields
 
 Extracts requested field names from a GraphQL resolver info object.
 
@@ -235,7 +245,7 @@ const resolvers = {
 };
 ```
 
-### 5. populate
+### 8. populate
 
 Intelligently populates MongoDB references based on GraphQL query fields
 

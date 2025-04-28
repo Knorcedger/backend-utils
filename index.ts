@@ -6,6 +6,7 @@ export * from './graphql/getRequestedFields.js';
 export * from './graphql/makeInputFieldRequired.js';
 export * from './graphql/mongoModelToGraphQLType.js';
 export * from './graphql/populate.js';
+export * from './graphql/removeFieldFromType.js';
 export * from './graphql/scalars.js';
 
 export * from './mongoose/mongooseConnect.js';

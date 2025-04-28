@@ -8,7 +8,6 @@ import {
   GraphQLBoolean,
   GraphQLEnumType,
   GraphQLFloat,
-  GraphQLID,
   GraphQLInputObjectType,
   GraphQLList,
   GraphQLNonNull,
@@ -16,7 +15,7 @@ import {
   GraphQLScalarType,
   GraphQLString,
 } from 'graphql';
-import { GraphQLDate } from 'graphql-scalars';
+import { GraphQLDate, GraphQLObjectID } from 'graphql-scalars';
 import mongoose from 'mongoose';
 
 type EnumTypeDefs = Record<string, string[]>;
@@ -95,7 +94,7 @@ export function transformModelToGraphQLTypes(model: mongoose.Model<any>) {
     if (type === String) return GraphQLString;
     if (type === Boolean) return GraphQLBoolean;
     if (type === Date) return GraphQLDate;
-    if (type === mongoose.Schema.Types.ObjectId) return GraphQLID;
+    if (type === mongoose.Schema.Types.ObjectId) return GraphQLObjectID;
     return GraphQLString;
   }
 

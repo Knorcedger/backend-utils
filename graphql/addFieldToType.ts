@@ -65,9 +65,9 @@ export const addFieldToType = ({
   // Verify (optional) - Check if the field is now present after modification
   const newFields = type.getFields();
   if (field.name in newFields) {
-    console.log(
-      `Successfully added/updated field "${field.name}" to type "${type.name}".`
-    );
+    // console.log(
+    //   `Successfully added/updated field "${field.name}" to type "${type.name}".`
+    // );
   } else {
     console.error(
       `Failed to add/update field "${field.name}" to type "${type.name}". Modification might not be reflected.`
