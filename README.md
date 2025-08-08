@@ -55,6 +55,15 @@ export const { objectTypes, enumTypes } =
 export const UserType = objectTypes.UserType;
 ```
 
+Use options.omitFields to specify which model fields will be ignored.
+
+```typescript
+const { enumTypes, objectTypes } = transformModelToGraphQLTypes(
+  MessageRuleModel,
+  { omitFields: ['time'] }
+);
+```
+
 #### `createInputTypeFromOutputType()`
 
 Converts an output GraphQL type to an input type for mutations.
