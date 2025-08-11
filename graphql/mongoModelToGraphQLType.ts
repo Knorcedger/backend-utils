@@ -35,6 +35,10 @@ interface ObjectTypeDef {
   name: string;
 }
 
+interface TransformModelOptions {
+  omitFields?: string[];
+}
+
 const toEnum = (value: string): string =>
   value
     .toUpperCase()
@@ -72,9 +76,13 @@ export function createInputTypeFromOutputType(
  * This version uses the schema’s original tree (nested definition) and
  * properly distinguishes between shorthand (leaf) definitions and nested subdocuments.
  */
-export function transformModelToGraphQLTypes(model: mongoose.Model<any>) {
+export function transformModelToGraphQLTypes(
+  model: mongoose.Model<any>,
+  options: TransformModelOptions = {}
+) {
   const enumTypeDefs: EnumTypeDefs = {};
   const objectTypeDefs: Record<string, ObjectTypeDef> = {};
+  const omitFields = options.omitFields || [];
 
   // --- Helper: Create/retrieve an object type definition ---
   function ensureObjectType(typeName: string, description = ''): ObjectTypeDef {
@@ -204,8 +212,11 @@ export function transformModelToGraphQLTypes(model: mongoose.Model<any>) {
       `Generated GraphQL type for ${parentTypeName}`
     );
     for (const key in tree) {
-      // Skip reserved keys.
-      if (['__v', '_id', 'id', 'idoptions'].includes(key.toLowerCase()))
+      // Skip reserved keys and omitted fields.
+      if (
+        ['__v', '_id', 'id', 'idoptions'].includes(key.toLowerCase()) ||
+        omitFields.includes(key)
+      )
         continue;
       let field = tree[key];
       let isArray = false;
