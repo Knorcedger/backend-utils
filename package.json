@@ -1,6 +1,6 @@
 {
   "name": "@knorcedger/backend-utils",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "A collection of useful utils to use in your backend code",
   "main": "dist/index.js",
   "type": "module",
