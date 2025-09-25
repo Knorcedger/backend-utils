@@ -179,43 +179,19 @@ export function transformModelToGraphQLTypes(
       return;
     }
 
-    // 4) If innerType is an object (and not a function or array), check if it's a nested subdocument.
-    // A nested subdocument is an object that contains field definitions, not a schema type definition.
-    // We need to distinguish between:
-    // - Objects that are nested subdocuments (should create new GraphQL type)
-    // - Objects that are mongoose type constructors or references
-    if (
-      innerType &&
-      typeof innerType === 'object' &&
-      !Array.isArray(innerType) &&
-      !(innerType instanceof mongoose.Schema) &&
-      typeof innerType !== 'function'
-    ) {
-      // Check if this looks like a nested subdocument definition
-      // by examining if it has properties that look like field definitions
-      const hasFieldDefinitions = Object.keys(innerType).some((key) => {
-        const value = innerType[key];
-        return (
-          value &&
-          typeof value === 'object' &&
-          (value.type !== undefined ||
-            value.enum !== undefined ||
-            value.description !== undefined)
-        );
-      });
-
-      if (hasFieldDefinitions) {
-        const nestedTypeName = `${stripTypeSuffix(parentTypeName)}${capitalize(fieldName)}Type`;
-        parseTree(innerType, nestedTypeName);
-        objectType.fields[fieldName] = {
-          description,
-          gqlType: nestedTypeName,
-          isArray,
-          isEnum: false,
-          required: req,
-        };
-        return;
-      }
+    // 4) If innerType is an object (and not a function or array) and does NOT itself have a "type" key,
+    // then treat it as a nested subdocument.
+    if (innerType && typeof innerType === 'object' && !('type' in innerType)) {
+      const nestedTypeName = `${stripTypeSuffix(parentTypeName)}${capitalize(fieldName)}Type`;
+      parseTree(innerType, nestedTypeName);
+      objectType.fields[fieldName] = {
+        description,
+        gqlType: nestedTypeName,
+        isArray,
+        isEnum: false,
+        required: req,
+      };
+      return;
     }
 
     // 5) Otherwise, assume it represents a scalar.
@@ -251,27 +227,8 @@ export function transformModelToGraphQLTypes(
       // Normalize the field if given in shorthand.
       field = normalizeFieldDef(field);
 
-      // Check if this is a nested subdocument vs a field definition
-      // A nested subdocument contains field definitions, while a field definition has schema properties
-      const isNestedSubdocument =
-        field &&
-        typeof field === 'object' &&
-        !Array.isArray(field) &&
-        !(field instanceof mongoose.Schema) &&
-        typeof field !== 'function' &&
-        // Check if this looks like a nested subdocument definition
-        Object.keys(field).some((subKey) => {
-          const subValue = field[subKey];
-          return (
-            subValue &&
-            typeof subValue === 'object' &&
-            (subValue.type !== undefined ||
-              subValue.enum !== undefined ||
-              subValue.description !== undefined)
-          );
-        });
-
-      if (isNestedSubdocument) {
+      // If the field definition does NOT have a "type" property, treat it as a nested subdocument.
+      if (!('type' in field)) {
         const nestedTypeName = `${stripTypeSuffix(parentTypeName)}${capitalize(key)}Type`;
         parseTree(field, nestedTypeName);
         objectType.fields[key] = {
