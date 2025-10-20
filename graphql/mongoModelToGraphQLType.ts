@@ -39,8 +39,62 @@ interface TransformModelOptions {
   omitFields?: string[];
 }
 
-const toEnum = (value: string): string =>
-  value
+const toEnum = (value) => {
+  const stringValue = value.toString();
+
+  // Check if it's a pure number
+  const num = parseInt(stringValue, 10);
+  if (!isNaN(num) && num.toString() === stringValue) {
+    // Generate number words for 0-99
+    const ones = [
+      'ZERO',
+      'ONE',
+      'TWO',
+      'THREE',
+      'FOUR',
+      'FIVE',
+      'SIX',
+      'SEVEN',
+      'EIGHT',
+      'NINE',
+    ];
+    const teens = [
+      'TEN',
+      'ELEVEN',
+      'TWELVE',
+      'THIRTEEN',
+      'FOURTEEN',
+      'FIFTEEN',
+      'SIXTEEN',
+      'SEVENTEEN',
+      'EIGHTEEN',
+      'NINETEEN',
+    ];
+    const tens = [
+      '',
+      '',
+      'TWENTY',
+      'THIRTY',
+      'FORTY',
+      'FIFTY',
+      'SIXTY',
+      'SEVENTY',
+      'EIGHTY',
+      'NINETY',
+    ];
+
+    if (num < 10) return ones[num];
+    if (num < 20) return teens[num - 10];
+    if (num < 100) {
+      const ten = Math.floor(num / 10);
+      const one = num % 10;
+      return one === 0 ? tens[ten] : `${tens[ten]}_${ones[one]}`;
+    }
+    return `NUMBER_${num}`;
+  }
+
+  // Otherwise, sanitize the string value
+  const safeValue = stringValue
     .toUpperCase()
     .replace(/-/g, '_')
     .replace(/ /g, '_')
@@ -51,6 +105,9 @@ const toEnum = (value: string): string =>
     .replace(/\./g, '')
     .replace(/&/g, '')
     .replace(/__/g, '_');
+
+  return safeValue;
+};
 
 interface ConversionResult {
   inputFields: GraphQLInputFieldConfigMap;
